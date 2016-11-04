@@ -160,7 +160,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">&pound;</span>
-                            <input id="savings-goal1" type="text" class="form-control"
+                            <input id="savings-goal1" type="text" class="form-control form-control-savings-goal"
                                    aria-label="Target amounts to save, then spend"
                                    placeholder="1000">
                             <span class="input-group-addon">.00</span>
@@ -170,6 +170,7 @@
                 </form>
             </div>
 
+            <br />
             <button id="add-goal-btn" type="button" class="btn btn-primary">Add another goal</button>
         </div>
     </div>
@@ -238,19 +239,19 @@
     function getMortgage(principal, term, interest, savingsBalance, savingsMonthly) {
         return {
             "principal": parseInt(principal),
-            "term-months": parseInt(term),
-            "interest-apr": parseFloat(interest / 100),
-            "savings-starting-balance": parseInt(savingsBalance),
-            "monthly-saving": parseInt(savingsMonthly),
-            "saving-goals": []
+            "term_months": parseInt(term),
+            "interest_apr": parseFloat(interest / 100),
+            "savings_starting_balance": parseInt(savingsBalance),
+            "monthly_saving": parseInt(savingsMonthly),
+            "saving_goals": []
         };
     }
 
-    function getSavingGoal(description, goal) {
-        return {
-            "saving-goal-description": description,
-            "saving-amount": goal
-        }
+    function getSavingGoals(mortgage) {
+        $(".form-control-savings-goal").each(function (index) {
+            mortgage.saving_goals.push({"saving_goal_description": index + "", "saving_amount": parseInt($(this).val())})
+        });
+        return mortgage;
     }
 
     function enableCalcBtn() {
@@ -289,6 +290,8 @@
                 $("#savings").val(),
                 $("#monthlysaving").val()
         );
+
+        getSavingGoals(mortgage);
 
         alert(JSON.stringify(mortgage));
 

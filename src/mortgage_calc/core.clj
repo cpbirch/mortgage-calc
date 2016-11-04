@@ -32,15 +32,15 @@
 (defn get-offset-mortgage-chart-data [ctx]
   (let [json (get-in ctx [:parameters :body])
         principal (:principal json)
-        interest-apr (:interest-apr json)
-        term (:term-months json)
+        interest-apr (:interest_apr json)
+        term (:term_months json)
         payment (monthly-mortgage-payment principal interest-apr term)]
         (->>
-          (:saving-goals json)
-          (map #(:saving-amount %))
+          (:saving_goals json)
+          (map #(:saving_amount %))
           (vec)
           (saving-goals)
-          (regular-savings (:savings-starting-balance json) (:monthly-saving json))
+          (regular-savings (:savings_starting_balance json) (:monthly_saving json))
           (offset-mortgage-monthly-values principal payment (/ interest-apr 12))
           (take term)
           (map #(vec [(:month %) (:offset-mortgage-balance %) (:repayment-mortgage-balance %) (:savings-balance %)]))
@@ -65,12 +65,12 @@
    :produces    [{:media-type "application/json"
                   :charset    "UTF-8"}]
    :methods     {:post {:parameters {:body {:principal      Long
-                                            :term-months    Long
-                                            :interest-apr   Double
-                                            :savings-starting-balance Long
-                                            :monthly-saving Long
-                                            :saving-goals   [{:saving-goal-description String
-                                                              :saving-amount           Long}]
+                                            :term_months    Long
+                                            :interest_apr   Double
+                                            :savings_starting_balance Long
+                                            :monthly_saving Long
+                                            :saving_goals   [{:saving_goal_description String
+                                                              :saving_amount           Long}]
                                             }}
                         :consumes   #{"application/json"
                                       "application/x-www-form-urlencoded"
