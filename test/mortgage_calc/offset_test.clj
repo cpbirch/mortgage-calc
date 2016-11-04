@@ -26,7 +26,7 @@
 (deftest offset-mortgage-monthly-values-test
   (testing "Given P=100000, M=843.86, APR=6% and savings at £0 per month with one goal of £10000"
     (let [mortgage-values (offset-mortgage-monthly-values 100000 843.86 (/ 0.06 12) (regular-savings 0 0 (saving-goals [0])))]
-      (is (<= (:mortgage-balance (nth mortgage-values 180) 0))))))
+      (is (<= (:offset-mortgage-balance (nth mortgage-values 180) 0))))))
 
 ; Principal £200,000
 ; Interest 2.1% APR
@@ -39,7 +39,18 @@
 ; Safari Plan1 £1,750
 ; Safari Plan2 £5,250
 ; Linn Plan2 £4,500
-; Kitchen Plan £50,000
+; Gate £5,000
+; Outside Paint: £1,000
+; Vitsoe £4,800
+; Sofabed £2,000
+; Bed £2,000
+; Dining Table £7,000
+; Front Door £1,500
+; More curtains: £1,000
+; Lights: £1,500
+; Desk & Chair: £1,000
+; Extra beds: £1,800
+; Kitchen Plan £100,000
 
 ; ((6.5 / 100 / 12) * 200000) / (1 - ((1 + (6.5 / 100 / 12)) ^ (-30 * 12)))
 

@@ -17,20 +17,26 @@
 
 (ns mortgage-calc.offset)
 
+(defn calculate-interest [principal monthly-rate]
+  (if (> principal 0)
+    (* principal monthly-rate)
+    0))
+
 (defn offset-mortgage-monthly-values
   ([principal payment monthly-apr regular-savings]
-   (offset-mortgage-monthly-values 1 principal payment monthly-apr regular-savings))
-  ([month principal payment monthly-apr regular-savings]
+   (offset-mortgage-monthly-values 1 principal principal payment monthly-apr regular-savings))
+  ([month offset-principal repayment-principal payment monthly-apr regular-savings]
     (lazy-seq
       (let [savings-bal (first regular-savings)
-            temp-mort-bal (- principal savings-bal)
-            interest-amt (if (> temp-mort-bal 0) (* temp-mort-bal monthly-apr) 0)
-            mortgage-bal (+ principal interest-amt)]
+            offset-interest-amt (calculate-interest (- offset-principal savings-bal) monthly-apr)
+            offset-mortgage-bal (+ offset-principal offset-interest-amt)
+            repay-mortgage-bal (+ repayment-principal (calculate-interest repayment-principal monthly-apr))]
         (cons {:month month
-               :mortgage-balance mortgage-bal
-               :interest interest-amt
+               :offset-mortgage-balance offset-mortgage-bal
+               :offset-interest offset-interest-amt
+               :repayment-mortgage-balance repay-mortgage-bal
                :savings-balance savings-bal}
-              (offset-mortgage-monthly-values (inc month) (- mortgage-bal payment) payment monthly-apr (rest regular-savings)))))))
+              (offset-mortgage-monthly-values (inc month) (- offset-mortgage-bal payment) (- repay-mortgage-bal payment) payment monthly-apr (rest regular-savings)))))))
 
 
 
