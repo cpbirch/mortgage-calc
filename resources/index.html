@@ -150,43 +150,40 @@
             </div>
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 saving-goals">
             <h2>Your Spending</h2>
             <p>Whilst you can just save to be debt free, you can also spend your savings on a holiday, a home extension
                 or anything else that you want. Add your saving goals here.</p>
 
-            <div class="form-group">
-                <label for="savings-goal1">First savings target (dream holiday?)</label>
-                <div class="input-group">
-                    <span class="input-group-addon">&pound;</span>
-                    <input id="savings-goal1" type="text" class="form-control" aria-label="Target amounts to save, then spend"
-                           placeholder="9000">
-                    <span class="input-group-addon">.00</span>
-                </div>
+            <div class="spending-goals">
+                <form class="form-inline saving-goal-group">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">&pound;</span>
+                            <input id="savings-goal1" type="text" class="form-control"
+                                   aria-label="Target amounts to save, then spend"
+                                   placeholder="1000">
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="form-group">
-                <label for="savings-goal2">Second savings target (a new kitchen?)</label>
-                <div class="input-group">
-                    <span class="input-group-addon">&pound;</span>
-                    <input id="savings-goal2" type="text" class="form-control" aria-label="Target amounts to save, then spend"
-                           placeholder="15000">
-                    <span class="input-group-addon">.00</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="savings-goal3">Third savings target (holiday home?)</label>
-                <div class="input-group">
-                    <span class="input-group-addon">&pound;</span>
-                    <input id="savings-goal3" type="text" class="form-control" aria-label="Target amounts to save, then spend"
-                           placeholder="100000">
-                    <span class="input-group-addon">.00</span>
-                </div>
-            </div>
+
+            <button id="add-goal-btn" type="button" class="btn btn-primary">Add another goal</button>
         </div>
     </div>
-    <p>
-        <button id="calc-btn" type="button" class="btn btn-success" disabled>Calculate</button>
-    </p>
+
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <button id="calc-btn" type="button" class="btn btn-success" disabled>Calculate my Mortgage</button>
+        </div>
+    </div>
+
     <hr/>
 
     <div id="linechart_material" style="width: 900px; height: 500px"></div>
@@ -212,6 +209,32 @@
     google.charts.load('current', {'packages': ['line']});
     google.charts.setOnLoadCallback(enableCalcBtn);
 
+    var goalId = 2;
+
+    // clone the thing
+    // give it a new ID
+    // append it
+    // add the remove option
+    $("#add-goal-btn").click(function () {
+        var groupId = goalId++;
+        $(".saving-goal-group")
+                .first()
+                .clone()
+                .appendTo(".spending-goals")
+                .find("#savings-goal1")
+                .attr("id", "savings-goal" + groupId)
+                .val("")
+                .focus()
+                .parents('.saving-goal-group')
+                .first()
+                .append('<button type="button" class="btn btn-info btn-minus">-</button>')
+                .find('.btn-minus')
+                .first()
+                .click(function () {
+                    $("#savings-goal" + groupId).parents(".saving-goal-group").remove()
+                });
+    });
+
     function getMortgage(principal, term, interest, savingsBalance, savingsMonthly) {
         return {
             "principal": parseInt(principal),
@@ -219,17 +242,21 @@
             "interest-apr": parseFloat(interest / 100),
             "savings-starting-balance": parseInt(savingsBalance),
             "monthly-saving": parseInt(savingsMonthly),
-            "saving-goals": []};
+            "saving-goals": []
+        };
     }
 
     function getSavingGoal(description, goal) {
-        return {"saving-goal-description": description,
-            "saving-amount": goal}
+        return {
+            "saving-goal-description": description,
+            "saving-amount": goal
+        }
     }
 
     function enableCalcBtn() {
-        $( "#calc-btn" ).click(function() {
+        $("#calc-btn").click(function () {
             drawChart();
+            $(document).scrollTop($("#linechart_material").offset().top);
         });
         $("#calc-btn").prop('disabled', false);
     }

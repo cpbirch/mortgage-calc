@@ -34,7 +34,7 @@
   (->>
     (one-plus-rate-pow-term apr months)
     (avg-compound-int apr)
-    (* principal)))
+    (* principal)))~
 
 (defn cost-of-mortgage [months payment principal]
   (- (* payment months) principal))
