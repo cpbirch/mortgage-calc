@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--
+  ~     Copyright (C) 2016 Christopher Birch
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Lesser General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Lesser General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Lesser General Public License
+  ~     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Offset Mortgage Calculators</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Mortgage Calculators</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Mortgage Calculations</h1>
+        <p>Find out when you will finish paying your offset mortgage using our calculator below.</p>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Your Mortgage</h2>
+            <p>Specify the mortgage amount you want to borrow, the mortgage interest rate and the mortgage term in
+                months.
+            </p>
+
+            <div class="form-group">
+                <label for="principal">Mortgage amount</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="principal" type="text" class="form-control"
+                           aria-label="Mortgage amount (to the nearest pound sterling)"
+                           placeholder="100000">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="interest">Annual interest (APR)</label>
+                <div class="input-group">
+                    <input id="interest" type="text" class="form-control" aria-label="Annual Interest (AP)"
+                           placeholder="2.75">
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="term">Length of the mortgage in months</label>
+                <div class="input-group">
+                    <input id="term" type="text" class="form-control" aria-label="Length of the mortgage in months"
+                           placeholder="300">
+                    <span class="input-group-addon">months</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <h2>Your Savings</h2>
+            <p>Set how much you currently have saved and specify a regular amount you can afford to save each month.</p>
+
+            <div class="form-group">
+                <label for="savings">Current savings balance</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="savings" type="text" class="form-control" aria-label="Current savings balance"
+                           placeholder="2000">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="monthlysaving">Amount to save each month</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="monthlysaving" type="text" class="form-control" aria-label="Amount to save each month"
+                           placeholder="500">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <h2>Your Spending</h2>
+            <p>Whilst you can just save to be debt free, you can also spend your savings on a holiday, a home extension
+                or anything else that you want. Add your saving goals here.</p>
+
+            <div class="form-group">
+                <label for="savings-goal1">First savings target (dream holiday?)</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="savings-goal1" type="text" class="form-control" aria-label="Target amounts to save, then spend"
+                           placeholder="9000">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="savings-goal2">Second savings target (a new kitchen?)</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="savings-goal2" type="text" class="form-control" aria-label="Target amounts to save, then spend"
+                           placeholder="15000">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="savings-goal3">Third savings target (holiday home?)</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&pound;</span>
+                    <input id="savings-goal3" type="text" class="form-control" aria-label="Target amounts to save, then spend"
+                           placeholder="100000">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button id="calc-btn" type="button" class="btn btn-success" disabled>Calculate</button>
+    </p>
+    <hr/>
+
+    <div id="linechart_material" style="width: 900px; height: 500px"></div>
+
+    <hr/>
+
+    <div class="well">
+        <p>Copyright &copy; Christopher Birch, 2016. All Rights Reserved.</p>
+    </div>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['line']});
+    google.charts.setOnLoadCallback(enableCalcBtn);
+
+    function getMortgage(principal, term, interest, savingsBalance, savingsMonthly) {
+        return {
+            "principal": parseInt(principal),
+            "term-months": parseInt(term),
+            "interest-apr": parseFloat(interest / 100),
+            "savings-starting-balance": parseInt(savingsBalance),
+            "monthly-saving": parseInt(savingsMonthly),
+            "saving-goals": []};
+    }
+
+    function getSavingGoal(description, goal) {
+        return {"saving-goal-description": description,
+            "saving-amount": goal}
+    }
+
+    function enableCalcBtn() {
+        $( "#calc-btn" ).click(function() {
+            drawChart();
+        });
+        $("#calc-btn").prop('disabled', false);
+    }
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+
+        populateOffsetMortgageData(data);
+
+        var options = {
+            chart: {
+                title: 'Offset savings repayment mortgage compared with a standard repayment mortgage.',
+                subtitle: 'Note that no interest has been added to the savings.'
+            },
+            width: 900,
+            height: 500
+        };
+
+        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+        chart.draw(data, options);
+    }
+
+    function populateOffsetMortgageData(dataTable) {
+        var mortgage = getMortgage(
+                $("#principal").val(),
+                $("#term").val(),
+                $("#interest").val(),
+                $("#savings").val(),
+                $("#monthlysaving").val()
+        );
+
+        alert(JSON.stringify(mortgage));
+
+        dataTable.addColumn('number', 'Months');
+        dataTable.addColumn('number', 'Offset Mortgage');
+        dataTable.addColumn('number', 'Repayment Mortgage');
+        dataTable.addColumn('number', 'Savings');
+
+        $.ajax({
+            url: "/api/mortgage/offset",
+            contentType: "application/json",
+            data: JSON.stringify(mortgage),
+//            data: JSON.stringify({
+//                "principal": 200400,
+//                "term-months": 271,
+//                "interest-apr": 0.0275,
+//                "savings-starting-balance": 3000,
+//                "monthly-saving": 2000,
+//                "saving-goals": [{
+//                    "saving-goal-description": "HiFi",
+//                    "saving-amount": 16000
+//                }, {"saving-goal-description": "Kitchen", "saving-amount": 100000}]
+//            }),
+            dataType: "json",
+            method: "post",
+            processData: false
+        })
+                .done(function (data) {
+                    dataTable.addRows(data);
+                })
+                .fail(function (data) {
+                    alert(data);
+                });
+    }
+
+</script>
+</body>
+</html>
