@@ -82,6 +82,8 @@
   [""
    [
     ["/" (resource index)]
+    ["/js/init.js" (yada/as-resource (clojure.java.io/resource "../resources/js/init.js"))]
+    ["/js/ui.js" (yada/as-resource (clojure.java.io/resource "../resources/js/ui.js"))]
     ["/api" (-> ["/mortgage" [
                               ;["/hello" (resource hello)]
                               ["/repayment" (resource mortgage-illustration)]
